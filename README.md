@@ -1,1 +1,1 @@
-# sozlikApp
+# sozlukApp
