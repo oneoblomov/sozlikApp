@@ -43,13 +43,13 @@ pip install pandas
 Uygulama açıldığında, kullanıcı giriş ekranını görecektir. Giriş yaptıktan sonra, kullanıcı kelime ekleme, düzenleme, sesli telaffuz dinleme, örnek cümle görme, konulara göre sınıflandırma, quiz formatında test etme ve öğrenme ilerlemesini takip etme gibi özelliklere erişebilir.
 
 > **Not:** Uygulama icersinde kullanilacak resim, ses ve ornek cumleler vb. api yardimi ile otomatik olarak cekilecek ve klasorler veya veritabani icine koyulacaktir.
-> 
+> data/uygulama ici goruntuler/ana.png
 ## Ekran Görüntüleri
-Ana ekran: Ana ekran
-Kelime ekleme ekranı: Kelime ekleme ekranı
-Quiz ekranı: Quiz ekranı
-Katkıda Bulunma
-Bu projeye katkıda bulunmak istiyorsanız, lütfen bir pull request gönderin.
+Ana ekran: ![ana](https://github.com/oneoblomov/sozlukApp/assets/148782684/3740a899-79d9-4d51-9701-3799632af520)
+Giris ekranı: ![giris](https://github.com/oneoblomov/sozlukApp/assets/148782684/6a29d89e-791c-42ab-b8d6-5985c9a4ea55)
+Quiz ekranı: ![quiz](https://github.com/oneoblomov/sozlukApp/assets/148782684/83c3e60b-ef4f-4495-9dcc-9960b5be8135)
+Analiz ekrani: ![analiz](https://github.com/oneoblomov/sozlukApp/assets/148782684/3ef02080-cf67-4084-a5a3-e0c5e22532b9)
+> **Not:** Bu projeye katkıda bulunmak istiyorsanız, lütfen bir pull request gönderin.
 ### Api servisleri ile kullanilan siteler:
 - Kelimeler icin https://evdeingilizcem.com/ingilizce-kelimeler
 - Resimler icin https://unsplash.com
