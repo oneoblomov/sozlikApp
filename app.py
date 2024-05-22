@@ -224,6 +224,7 @@ class uygulama(QtWidgets.QMainWindow):
         
         self.ui.actionKelime_Ekle.triggered.connect(self.KelimeEkle)
         self.ui.actionQuiz_i_Ba_lat.triggered.connect(self.quiz)
+        self.ui.actionAnaliz_Raporu_Al.triggered.connect(self.analiz)
         
         self.ui.action5.triggered.connect(self.sayi5)
         self.ui.action10.triggered.connect(self.sayi10)
@@ -233,6 +234,24 @@ class uygulama(QtWidgets.QMainWindow):
         self.ui.action30.triggered.connect(self.sayi30)
 
         self.sifirla(quizSoruSayisiDegeri)
+    def analiz(self):
+        df= veri_bilgi().drop(["id",'turkce', 'ing','ses','okunus','ornekler', 'tarih'],axis=1)
+        konular= df['konu'].unique()
+        
+        son= pd.DataFrame(index=[konular],columns=['konu','Lv 0','Lv 1','Lv 2','Lv 3','Lv 4','Lv 5','Lv 6'])
+        son['konu']=konular
+        for i in konular:
+            a1= df[df['konu']==i]
+            
+            son['Lv 0'][i]=len(a1[a1['seviye']==0])/len(a1)*100
+            son['Lv 1'][i]=len(a1[a1['seviye']==1])/len(a1)*100
+            son['Lv 2'][i]=len(a1[a1['seviye']==2])/len(a1)*100
+            son['Lv 3'][i]=len(a1[a1['seviye']==3])/len(a1)*100
+            son['Lv 4'][i]=len(a1[a1['seviye']==4])/len(a1)*100
+            son['Lv 5'][i]=len(a1[a1['seviye']==5])/len(a1)*100
+            son['Lv 6'][i]=len(a1[a1['seviye']==6])/len(a1)*100
+
+        ax = son.plot(kind='barh', stacked=True)
 
         for p in ax.patches:
             width = p.get_width()
@@ -461,7 +480,6 @@ class KayitUnut(QtWidgets.QWidget):
                 mydb.commit()
                 hataMsj='Şifreler Yenilendi'
             except Exception as e:
-                global hataMsj
                 hataMsj=e
         else:
             hataMsj='kısa'
