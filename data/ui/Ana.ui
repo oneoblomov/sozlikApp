@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>966</width>
+    <height>604</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(37, 38, 39);</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="1" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>448</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe Script</family>
+        <pointsize>22</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(191, 180, 143);</string>
+      </property>
+      <property name="text">
+       <string>Sözlük App</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1" colspan="3">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
+      <item>
+       <widget class="QLabel" name="turkce">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(144, 78, 85);</string>
+        </property>
+        <property name="text">
+         <string>Türkçe</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_7">
+        <property name="maximumSize">
+         <size>
+          <width>41</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="ing">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(144, 78, 85);</string>
+        </property>
+        <property name="text">
+         <string>İngilizce</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="0" column="3">
+     <widget class="QPushButton" name="ses">
+      <property name="maximumSize">
+       <size>
+        <width>100</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(242, 239, 233);
+color: rgb(0, 0, 0);</string>
+      </property>
+      <property name="text">
+       <string>Ses</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1" colspan="3">
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
+      <item>
+       <widget class="QPushButton" name="geri">
+        <property name="minimumSize">
+         <size>
+          <width>55</width>
+          <height>55</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>55</width>
+          <height>55</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>31</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(86, 78, 88);</string>
+        </property>
+        <property name="text">
+         <string>←</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame">
+        <property name="minimumSize">
+         <size>
+          <width>700</width>
+          <height>350</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>700</width>
+          <height>350</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="resim">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>400</height>
+            </size>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="pixmap">
+            <pixmap>../logo.png</pixmap>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="ileri">
+        <property name="minimumSize">
+         <size>
+          <width>55</width>
+          <height>55</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>55</width>
+          <height>55</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>30</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(86, 78, 88);</string>
+        </property>
+        <property name="text">
+         <string>→</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="4" column="1" colspan="3">
+     <widget class="QTextBrowser" name="bilgiler">
+      <property name="styleSheet">
+       <string notr="true">color: rgb(144, 78, 85);</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>966</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuAnaliz">
+    <property name="title">
+     <string>Analiz</string>
+    </property>
+    <addaction name="actionAnaliz_Raporu_Al"/>
+   </widget>
+   <widget class="QMenu" name="menuQuiz">
+    <property name="title">
+     <string>Quiz</string>
+    </property>
+    <widget class="QMenu" name="menuQuiz_soru_sayisini_degi_tir">
+     <property name="title">
+      <string>Quiz soru sayisini degiştir</string>
+     </property>
+     <addaction name="action5"/>
+     <addaction name="action10"/>
+     <addaction name="action15"/>
+     <addaction name="action20"/>
+     <addaction name="action25"/>
+     <addaction name="action30"/>
+    </widget>
+    <addaction name="actionQuiz_i_Ba_lat"/>
+    <addaction name="menuQuiz_soru_sayisini_degi_tir"/>
+   </widget>
+   <widget class="QMenu" name="menuEkleme">
+    <property name="title">
+     <string>Ekleme</string>
+    </property>
+    <addaction name="actionKelime_Ekle"/>
+   </widget>
+   <addaction name="menuQuiz"/>
+   <addaction name="menuAnaliz"/>
+   <addaction name="menuEkleme"/>
+  </widget>
+  <action name="actionQuiz_soru_sayisini_de_i_tir">
+   <property name="text">
+    <string>Quiz soru sayisini deşiştir</string>
+   </property>
+  </action>
+  <action name="actionQuiz_i_Ba_lat">
+   <property name="text">
+    <string>Quiz i Başlat</string>
+   </property>
+  </action>
+  <action name="action5">
+   <property name="text">
+    <string>5</string>
+   </property>
+  </action>
+  <action name="action10">
+   <property name="text">
+    <string>10</string>
+   </property>
+  </action>
+  <action name="action15">
+   <property name="text">
+    <string>15</string>
+   </property>
+  </action>
+  <action name="action20">
+   <property name="text">
+    <string>20</string>
+   </property>
+  </action>
+  <action name="action25">
+   <property name="text">
+    <string>25</string>
+   </property>
+  </action>
+  <action name="action30">
+   <property name="text">
+    <string>30</string>
+   </property>
+  </action>
+  <action name="actionAnaliz_Raporu_Al">
+   <property name="text">
+    <string>Analiz Raporu Al</string>
+   </property>
+  </action>
+  <action name="actionKelime_Ekle">
+   <property name="text">
+    <string>Kelime Ekle</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

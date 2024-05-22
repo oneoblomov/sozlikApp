@@ -4,16 +4,24 @@ import mysql.connector
 import json
 
 from data.arayüz.hata import Ui_hata
+from data.arayüz.Ana import Ui_MainWindow
 from data.arayüz.Giris import Ui_Giris
 from data.arayüz.KayitOl import Ui_kayitOl
 from data.arayüz.SifremiUnuttum import Ui_sifreUnut
+from data.arayüz.KelimeEkle import Ui_kelimeUnut
+
+import pygame
 
 from PyQt6 import QtGui, QtWidgets, QtCore
 
 import requests
+from PIL import Image
+from io import BytesIO
 import configparser
 
 import sys
+import os
+
 x=0
 kullaniciBilgi= np.nan
 hataMsj=''
@@ -70,6 +78,140 @@ class hata(QtWidgets.QWidget):
             hataMsj=''
             self.close()
 
+#region Uygulama        
+class uygulama(QtWidgets.QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
+        self.ui.turkce.setText('Türkçe')
+        self.ui.ing.setText('ingilizce')
+        self.ui.ileri.clicked.connect(self.ileri)
+        self.ui.geri.clicked.connect(self.geri)
+        self.ui.ses.clicked.connect(self.ses)
+        
+        self.ui.actionKelime_Ekle.triggered.connect(self.KelimeEkle)
+        
+    
+    def KelimeEkle(self):
+        self.ana_sayfa = KelimeEkle()
+        self.ana_sayfa.show()
+    
+    def ses(self):
+        filename = veri_bilgi()['ing'][x] + '.mp3'  
+
+        sound_file = f"data/ses/{filename}"
+        if os.path.exists(sound_file):
+            try:
+                pygame.mixer.init()
+                pygame.mixer.music.load(sound_file)
+                pygame.mixer.music.play()
+                while pygame.mixer.music.get_busy():
+                    pygame.time.Clock().tick(10)
+            except Exception as e:
+                print(f"Error playing sound: {e}")
+            finally:
+                pygame.mixer.quit()
+            return 
+
+        if veri_bilgi()['ses'][x].startswith('http'): 
+            try:
+                response = requests.get(veri_bilgi()['ses'][x])
+                if response.status_code == 200:
+                    with open(f"data/ses/{filename}", 'wb') as f:
+                        f.write(response.content)
+
+                    if os.path.exists(sound_file):
+                        try:
+                            pygame.mixer.init()
+                            pygame.mixer.music.load(sound_file)
+                            pygame.mixer.music.play()
+                            while pygame.mixer.music.get_busy():
+                                pygame.time.Clock().tick(10)
+                        except Exception as play_error:
+                            print(f"{play_error}")
+                        finally:
+                            pygame.mixer.quit()
+            except Exception as download_error:
+                print(f"EIndirme Hatasi: {download_error}")
+    def foto(self, resim):
+        if os.path.exists(f"data/image/{resim}.png"):
+            pixmap = QtGui.QPixmap(f"data/image/{resim}.png")
+            self.ui.resim.setPixmap(pixmap)
+        else:
+            url = f"https://api.unsplash.com/search/photos?query={resim}"
+            headers = {"Authorization": "Client-ID xxSyiroQ-BXkciHTmkDjYrHJ0PT-Cu4bBLvV71HKcvw"}
+            response = requests.get(url, headers=headers)
+            
+            if response.status_code == 200:
+                data = response.json()
+                first_image_url = data['results'][0]['urls']['small']
+                response = requests.get(first_image_url)
+                img = Image.open(BytesIO(response.content))
+                img.save(f"data/image/{resim}.png")
+                self.ui.resim.setPixmap(QtGui.QPixmap(f"data/image/{resim}.png"))
+    def bilgi(self):
+        data = json.loads(json.loads(veri_bilgi()['ornekler'][x]))
+        self.ui.bilgiler.clear()
+        
+        if isinstance(data, list):
+            for meaning in data:
+                if isinstance(meaning, dict):
+                    self.ui.bilgiler.append(f"Sözcük Türü: {meaning.get('partOfSpeech', 'N/A')}")
+                        
+                if 'synonyms' in meaning and meaning['synonyms']:
+                    synonyms = ', '.join(meaning['synonyms'])
+                    self.ui.bilgiler.append(f"\tEşanlamlılar: {synonyms}")
+                        
+                if 'antonyms' in meaning and meaning['antonyms']:
+                    antonyms = ', '.join(meaning['antonyms'])
+                    self.ui.bilgiler.append(f"\tZıtanlamlılar: {antonyms}")
+                        
+                for tanim in meaning.get('definitions', []):
+                    if isinstance(tanim, dict):
+                        self.ui.bilgiler.append(f"\tTanım: {tanim.get('definition', 'N/A')}")
+                                
+                    if 'synonyms' in tanim and tanim['synonyms']:
+                        synonyms = ', '.join(tanim['synonyms'])
+                        self.ui.bilgiler.append(f"\tEşanlamlılar: {synonyms}")
+                                
+                    if 'antonyms' in tanim and tanim['antonyms']:
+                        antonyms = ', '.join(tanim['antonyms'])
+                        self.ui.bilgiler.append(f"\tZıtanlamlılar: {antonyms}")
+                                
+                    if 'example' in tanim:
+                        self.ui.bilgiler.append(f"\t\tÖrnek: {tanim['example']}")
+
+    def ileri_geri(self, direction):
+        global x
+        if direction == "ileri":
+            x += 1
+        elif direction == "geri":
+            x -= 1
+        if len(veri_bilgi()) == x:
+            x = 0
+        if x<0:
+            x=len(veri_bilgi())-1
+        self.ui.turkce.setText(veri_bilgi()['turkce'][x])
+        self.ui.ing.setText(veri_bilgi()['ing'][x])
+        self.ui.bilgiler.setText(veri_bilgi()['konu'][x])
+        resim= veri_bilgi()['ing'][x]
+        try:
+            self.foto(resim)
+        except Exception as e:
+            global hataMsj
+            hataMsj=e
+            self.ui.resim.setPixmap(QtGui.QPixmap("data/logo.png"))
+        self.bilgi()
+        
+        self.ui.ses.setText(veri_bilgi()['okunus'][x][1:-1])
+        
+    def ileri(self):
+        self.ileri_geri(direction="ileri")
+
+    def geri(self):
+        self.ileri_geri(direction="geri")
+        
 #region Kayıt
 class kayit(QtWidgets.QWidget):
     def __init__(self):
@@ -202,7 +344,9 @@ class Giris(QtWidgets.QMainWindow):
                 self.ana_sayfa.show()
                 self.close()
             else:
-                pass
+                self.ana_sayfa = uygulama()
+                self.ana_sayfa.show()
+                self.close()
                 
         else:
             hataMsj='Kullanici veya Sifre Hatali'
