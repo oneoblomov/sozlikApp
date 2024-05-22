@@ -4,6 +4,8 @@ import mysql.connector
 import json
 from datetime import datetime
 
+import matplotlib.pyplot as plt
+
 from data.arayüz.quiz import Ui_quiz
 from data.arayüz.hata import Ui_hata
 from data.arayüz.Ana import Ui_MainWindow
@@ -223,6 +225,60 @@ class uygulama(QtWidgets.QMainWindow):
         self.ui.actionKelime_Ekle.triggered.connect(self.KelimeEkle)
         self.ui.actionQuiz_i_Ba_lat.triggered.connect(self.quiz)
         
+        self.ui.action5.triggered.connect(self.sayi5)
+        self.ui.action10.triggered.connect(self.sayi10)
+        self.ui.action15.triggered.connect(self.sayi15)
+        self.ui.action20.triggered.connect(self.sayi20)
+        self.ui.action25.triggered.connect(self.sayi25)
+        self.ui.action30.triggered.connect(self.sayi30)
+
+        self.sifirla(quizSoruSayisiDegeri)
+
+        for p in ax.patches:
+            width = p.get_width()
+            height = p.get_height()
+            x, y = p.get_xy() 
+            percentage = '%{:.0f}'.format(width)
+
+            if width != 0:
+                ax.text(x+width/2, 
+                        y+height/2, 
+                        percentage, 
+                        horizontalalignment='center', 
+                        verticalalignment='center')
+        ax.legend(bbox_to_anchor=(1, 1), loc='best')
+        plt.show()
+    def sifirla(self,sayi):
+        self.ui.action5.setText('5')
+        self.ui.action10.setText('10')
+        self.ui.action15.setText('15')
+        self.ui.action20.setText('20')
+        self.ui.action25.setText('25')
+        self.ui.action30.setText('30')
+        if sayi==5:
+            self.ui.action5.setText('5 ●')
+        elif sayi==10:
+            self.ui.action10.setText('10 ●')
+        elif sayi==15:
+            self.ui.action15.setText('15 ●')
+        elif sayi==20:
+            self.ui.action20.setText('20 ●')
+        elif sayi==25:
+            self.ui.action25.setText('25 ●')
+        elif sayi==30:
+            self.ui.action30.setText('30 ●') 
+    def quizSoruSayisi(self,sayi):
+        self.sifirla(sayi)
+        global quizSoruSayisiDegeri
+        quizSoruSayisiDegeri= sayi
+        
+    def sayi5(self) :        self.quizSoruSayisi(5)
+    def sayi10(self):        self.quizSoruSayisi(10)
+    def sayi15(self):        self.quizSoruSayisi(15)
+    def sayi20(self):        self.quizSoruSayisi(20)
+    def sayi25(self):        self.quizSoruSayisi(25)
+    def sayi30(self):        self.quizSoruSayisi(30)
+    
     def quiz(self):
         self.ana_sayfa = quiz()
         self.ana_sayfa.show()
