@@ -32,7 +32,7 @@ Bu proje, kelime öğrenme ve tekrar etme amacıyla ***Python*** ile tasarlanmı
 
 ## Kurulum
 - Projeyi *GitHub*'dan klonlayın.
-- Gerekli kütüphaneleri yükleyin: 
+- *Python*'u ve gerekli kütüphanelerini yükleyin: 
 ```python
 # Ornegin
 pip install pandas
