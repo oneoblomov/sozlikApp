@@ -1,4 +1,4 @@
-<h1 align="center"> $\color{red}{sozlukApp}$ </h1>
+<h1 align="center"> $\color{red}sozlukApp$ </h1>
 
 # Proje Hakkında
 Bu proje, kelime öğrenme ve tekrar etme amacıyla ***Python*** ile tasarlanmış bir masaüstü uygulamasıdır. Uygulama, kullanıcıların kelimeleri Türkçe ve İngilizce olarak girmelerini, sesli telaffuzlarını dinlemelerini, örnek cümleler görmelerini ve kelimeleri konulara göre sınıflandırmalarını sağlar. Ayrıca, kullanıcılar kelimeleri quiz formatında test edebilir ve öğrenme ilerlemelerini takip edebilirler.
